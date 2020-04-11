@@ -1,0 +1,10 @@
+private static void postorder(Node head) 
+{
+	if(head!=null)
+	{
+	  postorder(head.left);
+	  postorder(head.right);
+	  System.out.println(head.data +" ");
+	}	
+	
+}
