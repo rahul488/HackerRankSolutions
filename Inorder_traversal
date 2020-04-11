@@ -1,0 +1,10 @@
+private static void inorder(Node head) 
+{
+	if(head!=null)
+	{
+		inorder(head.left);
+		System.out.println(head.data + " ");
+		inorder(head.right);
+	}
+	
+}
