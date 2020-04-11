@@ -1,0 +1,9 @@
+private static void preorder(Node head) {
+	if(head!=null)
+	{
+		System.out.println(head.data +" ");
+		preorder(head.left);
+		preorder(head.right);
+	}
+	
+}
