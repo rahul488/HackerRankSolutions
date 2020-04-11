@@ -1,0 +1,10 @@
+public static int height(Node root) 
+    {
+        if(root == null)
+        return -1;
+
+        int  lheight=height(root.left);
+        int  rheight=height(root.right);
+
+        return lheight > rheight?lheight+1:rheight+1;
+    }
