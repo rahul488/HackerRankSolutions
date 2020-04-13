@@ -1,0 +1,103 @@
+import java.util.*;
+import java.io.*;
+
+class Node {
+    Node left;
+    Node right;
+    int data;
+    
+    Node(int data) {
+        this.data = data;
+        left = null;
+        right = null;
+    }
+}
+
+class Solution {
+
+	/* 
+    
+    class Node 
+    	int data;
+    	Node left;
+    	Node right;
+	*/
+	public static void topView(Node root) 
+    {
+      int hd=0;
+      TreeMap<Integer,Integer> hs=new TreeMap<>();
+      getValue(root,hd,hs); 
+      for(Integer data:hs.values()){ 
+      System.out.print( data + " "); 
+    } 
+    }
+
+    public static void getValue(Node root,int hd,TreeMap<Integer,Integer> hs)
+    {
+        class QNode
+        {
+            Node node;
+            int hd;
+                public QNode(Node node,int hd)
+                {
+                    this.node=node;
+                    this.hd=hd;
+                }
+        }
+        Queue<QNode> q=new LinkedList<>();
+        if(root == null)
+        {
+            return ;
+        }
+        else
+        {
+            q.add(new QNode(root,hd));
+        }
+
+        while(!q.isEmpty())
+        {
+            QNode temp=q.poll();
+
+            if(!hs.containsKey(temp.hd))
+            {
+                hs.put(temp.hd,temp.node.data);
+            }
+
+            if(temp.node.left!=null)
+            {
+                q.add(new QNode(temp.node.left,temp.hd-1));
+            }
+            if(temp.node.right!=null)
+            {
+                q.add(new QNode(temp.node.right,temp.hd+1));
+            }
+        }
+    } 
+	public static Node insert(Node root, int data) {
+        if(root == null) {
+            return new Node(data);
+        } else {
+            Node cur;
+            if(data <= root.data) {
+                cur = insert(root.left, data);
+                root.left = cur;
+            } else {
+                cur = insert(root.right, data);
+                root.right = cur;
+            }
+            return root;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int t = scan.nextInt();
+        Node root = null;
+        while(t-- > 0) {
+            int data = scan.nextInt();
+            root = insert(root, data);
+        }
+        scan.close();
+        topView(root);
+    }	
+}
