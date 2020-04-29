@@ -1,0 +1,35 @@
+
+//ip-"PAYPALISHIRING"
+//op-"PAHNAPLSIIGYIR"
+
+class Solution {
+    public String convert(String s, int numRows) 
+    {
+        List<StringBuilder> list=new ArrayList<>();
+        
+        for(int i=0;i<numRows;i++)
+        {
+            list.add(new StringBuilder()); 
+        }
+        int i=0,id=0;
+        while(id<s.length())
+        {
+           for(i=0;i<numRows && id<s.length();i++)
+           {
+                list.get(i).append(s.charAt(id++));
+           }
+           for(i=numRows-2;i>0 && id<s.length();i--)
+           {
+                 list.get(i).append(s.charAt(id++));
+           }
+        }
+        StringBuilder sb=new StringBuilder();
+        
+        for(StringBuilder st:list)
+        {
+            sb.append(st.toString());
+        }
+        
+        return sb.toString();
+    }
+}
