@@ -1,0 +1,37 @@
+class Solution {
+    public int romanToInt(String s) 
+    {
+        
+           
+        if(s==null || s.length()==0)
+        {
+            return 0;
+        }
+        
+        HashMap<Character,Integer> hs=new HashMap<>();
+        
+        hs.put('I',1);
+        hs.put('V',5);
+        hs.put('X',10);
+        hs.put('L',50);
+        hs.put('C',100);
+        hs.put('D',500);
+        hs.put('M',1000);
+        
+        int sum=0;
+        for(int i=0;i<s.length()-1;i++)
+        {
+            
+            if(hs.get(s.charAt(i)) >= hs.get(s.charAt(i+1)))
+            {
+                sum+=hs.get(s.charAt(i));
+            }
+            else
+            {
+                sum-=hs.get(s.charAt(i));
+            }
+        }
+        sum+=hs.get(s.charAt(s.length()-1));
+        return sum;
+    }
+}
