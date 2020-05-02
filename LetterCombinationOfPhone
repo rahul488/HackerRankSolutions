@@ -1,0 +1,39 @@
+import java.util.*;
+class Solution {
+    public static List<String> letterCombinations(String digits) 
+    {
+        HashMap<Character,String> hs=new HashMap<>();
+         List<String> list=new ArrayList<>();
+        
+        if(digits.length()==0)
+            return list;
+       
+        hs.put('2',"abc");
+        hs.put('3',"def");
+        hs.put('4',"ghi");
+        hs.put('5',"jkl");
+        hs.put('6',"mno");
+        hs.put('7',"pqrs");
+        hs.put('8',"tuv");
+        hs.put('9',"wxyz");
+        
+        StringBuffer res=new StringBuffer();
+        printLetters(digits,0,hs,res,list);
+        return list;
+    }
+    public static void printLetters(String digits,int i,HashMap<Character,String> hs,StringBuffer res,List<String> list)
+    {
+        if(i==digits.length())
+        {
+            list.add(res.toString());
+            return;
+        }
+        String letters=hs.get(digits.charAt(i));
+        for(int j=0;j<letters.length();j++)
+        {
+            res.append(letters.charAt(j));
+            printLetters(digits,i+1,hs,res,list);
+            res.deleteCharAt(res.length()-1);
+        }
+    }
+}
