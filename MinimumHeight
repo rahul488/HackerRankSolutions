@@ -1,0 +1,10 @@
+ static int lowestTriangle(int base, int area)
+    {
+        int  height=solve(2*area,base);
+        return height;  
+  
+    }
+    public static int solve(int x,int y)
+    {
+        return x/y+(x%y==0?0:1);
+    }
