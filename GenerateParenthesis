@@ -1,0 +1,21 @@
+class Solution {
+    public List<String> generateParenthesis(int n) 
+    {
+        List<String> list=new ArrayList<>();
+       String ans="";
+        list=gp(n,list,ans,0,0);
+        return list;
+    }
+    public static List<String> gp(int n,List<String> list,String ans,int start,int close)
+    {
+        if(ans.length()==2*n)
+        {
+            list.add(ans);
+        }
+        if(start < n)
+            gp(n,list,ans+"(",start+1,close);
+        if(close < start)
+            gp(n,list,ans+")",start,close+1);
+        return list;
+    }
+}
