@@ -1,6 +1,4 @@
 
-//ip-"PAYPALISHIRING"
-//op-"PAHNAPLSIIGYIR"
 
 class Solution {
     public String convert(String s, int numRows) 
