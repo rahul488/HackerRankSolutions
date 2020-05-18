@@ -1,0 +1,53 @@
+class Solution {
+    public int searchInsert(int[] nums, int target) 
+    {
+        int idx=searchnum(nums,target);
+        if(idx > Integer.MIN_VALUE)
+            return idx;
+        else
+            return findIdx(nums,target);
+    }
+    public static int searchnum(int ar[],int x)
+    {
+        int first=0,last=ar.length-1;
+        while(first <= last)
+        {
+            int mid=(first+last)/2;
+            
+            if(ar[mid]==x)
+                return mid;
+            else if(x > ar[mid])
+                first=mid+1;
+            else
+                last=mid-1;
+        }
+        return Integer.MIN_VALUE;
+    }
+    public static int findIdx(int ar[],int x)
+    {
+       int first=0,last=ar.length;
+        
+        while(first <= last)
+        {
+           int mid=(first+last)/2;
+           
+            if((mid==0 || x > ar[mid-1]) && x < ar[mid])
+            {
+                return mid;
+            }
+            else if((mid==ar.length-1 || x < ar[mid+1]) && x > ar[mid])
+            {
+                   return mid+1;
+            }
+            else if(x < ar[mid])
+            {
+                   last=mid-1;
+            }
+            else
+            {
+                   first=mid+1;
+             }
+        }
+       return -1; 
+    }
+}
